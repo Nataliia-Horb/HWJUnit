@@ -11,12 +11,17 @@ public class NumberValidator {
 //        Задачу выполнить способом test-driven development, TDD (сначала написать тесты на метод, после чего напиcать сам метод).
 
     public static boolean isValidAccountNumber(String accountNumber) {
-        if (accountNumber == null) throw new NullPointerException();
+        if (accountNumber == null) return false;
 
-        accountNumber.replaceAll(" +", "");
-        accountNumber = accountNumber.chars().filter(Character::isDigit).collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append).toString();
-        long checkCount = accountNumber.chars().filter(e -> e == '0').boxed().count();
-        return accountNumber.length() == 14 && checkCount < 14;
+       accountNumber= accountNumber.replaceAll("\\s+", "");
+        if (accountNumber.length() == 14) {
+            accountNumber = accountNumber.chars().filter(Character::isDigit).collect(StringBuilder::new,
+                    StringBuilder::appendCodePoint, StringBuilder::append).toString();
+            long checkCount = accountNumber.chars().filter(e -> e == '0').boxed().count();
+            return (accountNumber.length() == 14 && checkCount < 14);
+        } else {
+            return false;
+        }
     }
 }
 

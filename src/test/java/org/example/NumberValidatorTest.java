@@ -22,12 +22,11 @@ class NumberValidatorTest {
             assertTrue(NumberValidator.isValidAccountNumber(str)); //проверка  на корректность с учетом чистки пробелов
         }
         assertFalse(NumberValidator.isValidAccountNumber(""));// проверка на  нулевую строку.
-        assertThrows(NullPointerException.class, () -> NumberValidator.isValidAccountNumber(null)); // проверка на пустоту
+        assertFalse(NumberValidator.isValidAccountNumber(null)); // проверка на пустоту
         assertFalse(NumberValidator.isValidAccountNumber("1234512345678"));// проверка на символы менее 14
         assertFalse(NumberValidator.isValidAccountNumber("1234512345678000"));// проверка на символы более 14
         assertFalse(NumberValidator.isValidAccountNumber("+2345a1234sd56")); // проверка на надичие только цыфр
         assertFalse(NumberValidator.isValidAccountNumber("00000000000000"));// проверка на 14 нулей
-
 
     }
 }
